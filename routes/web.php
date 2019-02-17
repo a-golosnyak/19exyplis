@@ -19,5 +19,6 @@ Route::post('/edit/submit', 'TaskController@submit');
 Route::post('/edit/edit', 'TaskController@updateTask');
 Route::get('/delete/{id}', 'TaskController@delete');
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/{id}', 'TaskController@getTask');
+
+Auth::routes();

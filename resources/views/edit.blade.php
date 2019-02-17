@@ -10,8 +10,8 @@
 				<br>
 				{{ Form::label('Description', '')}}
 				{{ Form::textarea('description', $description, ['class'=>'form-control', 'placeholder' => 'Tipe ad here']) }}
-				{{ Form::hidden('author', Auth::user()->name, ['class'=>'form-control'])}}
-				{{ Form::hidden('id', $id, ['class'=>'form-control'])}}
+				{{ Form::hidden('user_id', Auth::user()->id) }}
+				{{ Form::hidden('id', $id) }}
 				<br>
 				{{ Form::submit($but, ['class'=>'btn']) }}
 			</div>           

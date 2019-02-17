@@ -10,6 +10,7 @@
 			{{ Form::label('Description', '')}}
 			{{ Form::textarea('description', '', ['class'=>'form-control', 'placeholder'=>'Tipe ad here']) }}
 			<br>
+			{{ Form::hidden('user_id', Auth::user()->id) }}
 			{{ Form::submit('Create', ['class'=>'btn']) }}
 		</div>           
     {!! Form::close() !!}

@@ -10,51 +10,52 @@
                     <div class="nav-item">
                         @guest
                         @else
-                            <a class="nav-link" href="/edit">Create ad</a>
+                            <a class="nav-link" href="/edit">Create task</a>
                         @endguest
                     </div>
                 </div>
             </div>
             <div class="pull-xs-right">
                 <div class="nav nav-tabs">
-                    <div class="nav-item dropdown " style="vertical-align: right;">
+                    <div class=" " style="vertical-align: right;">
                         
-                    @guest
-                        <div class='nav-link dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Sign in</div>
+                    {{--  @guest
+                        <a href="{{ route('login') }}">Login</a>
+                        <a class="m-l-1" href="{{ route('register') }}">Register</a>
                     @else
                         <div class='nav-link dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>{{ Auth::user()->name }}</div>
                     @endguest
-                    
-                        <div class='dropdown-menu dropdown-menu-right'>
-                            @guest
-                                <form class='form-signin' method='post' action="{{ route('login') }}">
-                                    @csrf
+                    --}}
 
-                                    <div class='dropdown-item'>
-                                        <input id="name" type='name' name='name' maxlength='30' size='20' class='form-control{{ $errors->has('name') ? ' is-invalid' : '' }}' placeholder='Username' required autofocus>
-                                    </div>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
 
-                                    <div class='dropdown-item'>
-                                        <input id="password" type='password' name='password' class='form-control{{ $errors->has('password') ? ' is-invalid' : '' }}' size='40' placeholder='Password' required>
-                                    </div>
-
-                                    <div class='dropdown-item'>
-                                        <button class='btn btn-md btn-secondary btn-block p-x-3' type='submit'> Sign in </button>
-                                    </div>
-                                </form>
-                            @else
-                                <div class='dropdown-item'>  
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
-                            @endguest  
-                        </div> 
+                            </li>
+                        @endguest
+
                     </div>
                 </div> 
             </div>

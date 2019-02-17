@@ -1,12 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<div class="container">
+<div class="container p-y-3">
     <div class="row justify-content-center">
+        <div class="col-md-2">
+        </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
-
+                <br>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -41,6 +43,8 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="col-md-2">
         </div>
     </div>
 </div>
