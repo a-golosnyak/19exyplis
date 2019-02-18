@@ -39,20 +39,17 @@ class TaskController extends Controller
     }
     
     public function editTask($id)
-    {  
+    {
         $tasks = Task::where('id', "$id")->get();
 
-        if(Auth::user()->id == $tasks[0]->user_id)
-        {
+        if ((Auth::check()) && (Auth::user()->id == $tasks[0]->user_id)) {
             $action = 'edit/edit/';
             return view('/edit', [  'title'=>$tasks[0]->title,
                                     'description' => $tasks[0]->description,
                                     'but' => 'Save',
                                     'action' => $action,
                                     'id'=>$id]);
-        }
-        else
-        {
+        } else {
             abort(403);
         }
     }
@@ -73,51 +70,49 @@ class TaskController extends Controller
 
         $tasks = Task::where('id', $task->id)->get();
 
-        if(Auth::user()->id == $tasks[0]->user_id)
-        {
+        if (Auth::user()->id == $tasks[0]->user_id) {
             Task::where('id', $task->id)
              ->update(['title'=>$task->title,
                         'description'=>$task->description,
                         'user_id'=>$task->user_id]);
 
             return redirect("/")->with('status', 'Task updated');
-        }
-        else
-        {
+        } else {
             abort(403);
         }
     }
     
     public function getTasks()
     {
-        if(isset(Auth::user()->id)) {
-            $tasks = Task::where('user_id', (Auth::User()->id))->orderBy('id', 'desc')->get();
+        if (isset(Auth::user()->id)) {
+            $tasks = Task::where('user_id', (Auth::User()->id))
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
             return view('tasks', ['tasks' => $tasks]);
-        }
-        else{
+        } else {
             return view('home');
         }
-
     }
 
     public function getTask($id)
     {
-        $task = Task::where('id', $id)->get();
-
-        return view('task', ['tasks' => $task]);
+        if (Auth::check()) {
+            $task = Task::where('id', $id)->get();
+            return view('task', ['tasks' => $task]);
+        } else {
+            abort(403);
+        }
     }
 
     public function delete($id)
     {
         $task = Task::where('id', $id)->get();
 
-        if(Auth::user()->id == $task[0]->user_id)
-        {
+        if ((Auth::check()) && (Auth::user()->id == $task[0]->user_id)) {
             $task = Task::where('id', $id)->delete();
             return redirect("/")->with('status', 'Task deleted');
-        }
-        else
-        {
+        } else {
             abort(403);
         }
     }

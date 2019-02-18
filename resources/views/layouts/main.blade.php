@@ -24,7 +24,7 @@
                 @include('inc.navigation')
 
                 <div class='container h-85'>
-                    <div class='row data-field h-85' >
+                    <div class='row data-field' >
                         @include('inc.messages')
                         @yield('content')
                     </div>

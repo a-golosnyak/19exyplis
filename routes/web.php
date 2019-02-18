@@ -12,13 +12,13 @@
 */
 
 
-Route::get('/', 'TaskController@getTasks');
-Route::get('/edit/{id}', 'TaskController@editTask');
-Route::get('/edit', 'TaskController@createTask');
+Route::get('/', 			'TaskController@getTasks');
+Route::get('/edit/{id}', 	'TaskController@editTask');
+Route::get('/edit', 		'TaskController@createTask');
 Route::post('/edit/submit', 'TaskController@submit');
-Route::post('/edit/edit', 'TaskController@updateTask');
-Route::get('/delete/{id}', 'TaskController@delete');
+Route::post('/edit/edit', 	'TaskController@updateTask');
+Route::get('/delete/{id}', 	'TaskController@delete');
 Auth::routes();
-Route::get('/{id}', 'TaskController@getTask');
+Route::get('/{id}', 		'TaskController@getTask');
 
 Auth::routes();

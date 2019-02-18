@@ -71,6 +71,25 @@ footer{
      height:50%;
  }
 
+/*--- Custom pagination buttons -----------------------------------------------------*/
+.page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
+    background-color: lightgrey;  
+    border-color: lightgrey;   
+}
+
+.page-link{
+    color: grey;
+}
+
+.page-link:hover{
+    color: grey;
+}
+
+.page-link:focus, .page-link:hover {
+  color: grey;
+}
+/*-----------------------------------------------------------------------------------*/
+
 /*
 * Navigation ---------------------------------------------------------------
 */

@@ -28,7 +28,7 @@
 					<br>
 					<br>
 				@endforeach
-				{{-- $tasks->links() --}}
+				{{ $tasks->links() }}
 			@endif
 		@endguest
 	{{--
